@@ -1,0 +1,8 @@
+fun mostCommonWord(text: String): String = do {
+  var counts = (lower(text) splitBy " ") reduce (word, acc = {}) ->
+    (acc - word) ++ { (word): (acc[word] default 0) + 1 }
+  var best = namesOf(counts) reduce (word, top = "") ->
+    if ((counts[word] default 0) > (counts[top] default 0)) word else top
+  ---
+  "\"$(best)\" appears $(counts[best]) times"
+}
